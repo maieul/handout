@@ -39,10 +39,10 @@
 		\ifhandout@numbering%
 			\stepcounter{handoutnumber}%
 			\handoutnumberintxt{\thehandoutnumber}%
-		\fi
+		\fi%
 		\input{\handout@dir/#1}% Add the handout
-		\immediate\write\@handout {\string\csuse{handout@input}{#1}}
-	\fi
+		\immediate\write\@handout {\string\csuse{handout@input}{#1}}%
+	\fi%
 }
 
 
@@ -66,8 +66,8 @@
 
 \ifhandout@sectioning%Only if needed by option
 	
-	\pretocmd{\@sect}{% 
-		\immediate\write\@handout{\string\csuse{#1}{#8}}%
+	\apptocmd{\@sect}{% 
+		\immediate\write\@handout{\string\csuse{#1}{\noexpand#8}}%
 		}{}{\handout@warning{Can't patch sectioning commands}}
 
 \fi
