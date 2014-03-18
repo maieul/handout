@@ -31,7 +31,7 @@
 \immediate\openout\@handout=\jobname.handout
 
 
-% The main command, to be use by people
+% The main command, to be used by people
 \newcommand{\handout}[1]{%	
 	\ifhandout@disabled\else%Only if not disabled, of course!
 		\ifhandout@numbering%
@@ -42,6 +42,12 @@
 		\immediate\write\@handout {\string\csuse{handout@input}{#1}}
 	\fi
 }
+
+
+% The special commands to be used by people
+
+\newcommand{\nothandout}[1]{#1}
+\newcommand{\onlyhandout}[1]{}
 
 % The command written in the .handout file
 \newcommand{\handout@input}[1]{%
@@ -90,6 +96,11 @@
 	\def\addcontentsline##1##2##3{}
 	\let\label\@gobble
 	\let\index\@gobble
+	
+	% Switches onlyhandout and nothandout commands
+	\renewcommand{\nothandout}[1]{}
+	\renewcommand{\onlyhandout}[1]{##1}
+
 }
 
 % Handout numbering
