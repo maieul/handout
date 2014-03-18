@@ -3,7 +3,7 @@
 \usepackage{polyglossia,fontspec}
 \setmainlanguage{french}
 
-\usepackage[disabled,sectioning]{handout}
+\usepackage[numbering,sectioning]{handout}
 % Customize the begining of an handout
 \newcommand{\beforehandout}{%
 	
@@ -12,6 +12,11 @@
 	\let\endquotation\empty
 }
 
+% Customize the numbering of handouts
+
+\renewcommand{\thehandoutnumber}{%
+	\fbox{\arabic{handoutnumber}}%
+}
 
 \begin{document}
 

@@ -18,6 +18,7 @@
 
 % Options
 \DeclareBoolOption[false]{disabled}
+\DeclareBoolOption[false]{numbering}
 \DeclareBoolOption[false]{sectioning}
 
 \ProcessKeyvalOptions*
@@ -30,14 +31,26 @@
 \immediate\openout\@handout=\jobname.handout
 
 
-% The main command
+% The main command, to be use by people
 \newcommand{\handout}[1]{%	
-	\ifhandout@disabled\else%
+	\ifhandout@disabled\else%Only if not disabled, of course!
+		\ifhandout@numbering%
+			\stepcounter{handoutnumber}%
+			\handoutnumberintxt{\thehandoutnumber}%
+		\fi
 		\input{#1}% Add the handout
-		\immediate\write\@handout {\string\input{#1}}
+		\immediate\write\@handout {\string\csuse{handout@input}{#1}}
 	\fi
 }
 
+% The command written in the .handout file
+\newcommand{\handout@input}[1]{%
+	\ifhandout@numbering%
+		\stepcounter{handoutnumber}%
+		\handoutnumber{\thehandoutnumber}%
+	\fi%
+	\input{#1}%
+}
 % Output the sectionning commands in the .handout file
 
 \ifhandout@sectioning%Only if needed by option
@@ -70,9 +83,20 @@
 		\setcounter{subsection}{0}%
 		\setcounter{subsubsection}{0}%
 	\fi
-	
+	\ifhandout@numbering
+		\setcounter{handoutnumber}{0}%
+	\fi
 	% Note new datas in content or in label or index
 	\def\addcontentsline##1##2##3{}
 	\let\label\@gobble
 	\let\index\@gobble
 }
+
+% Handout numbering
+
+\ifhandout@numbering
+	\newcounter{handoutnumber}
+\fi
+
+\newcommand{\handoutnumberintxt}[1]{\handoutnumber{#1}}
+\newcommand{\handoutnumber}[1]{\marginpar{#1}}
