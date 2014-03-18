@@ -16,6 +16,9 @@
 \ProvidesPackage{handout}[2014/03/18 1.0.0 Handout package]
 \RequirePackage{etoolbox}
 
+% Warning tools
+\newcommand{\handout@warning}[1]{\@latex@warning{Handout: #1}}
+
 % Opening the handout file
 \newwrite\@handout
 \immediate\openout\@handout=\jobname.handout
@@ -32,6 +35,7 @@
 \AtEndDocument{%
 	\immediate\closeout\@handout%
 	\before@handout%
+	\ifdef{\beforehandout}{\beforehandout}{\handout@warning{No command defined to be run before handout}}
 	\input\jobname.handout%
 }
 
