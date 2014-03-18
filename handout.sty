@@ -54,7 +54,9 @@
 
 % Standard command before handout
 \newcommand{\before@handout}{%
+	% New page
 	\newpage%
+	% Reset counter
 	\setcounter{page}{1}%
 	\setcounter{footnote}{0}%
 	\ifhandout@sectioning%
@@ -62,4 +64,9 @@
 		\setcounter{subsection}{0}%
 		\setcounter{subsubsection}{0}%
 	\fi
+	
+	% Note new datas in content or in label or index
+	\def\addcontentsline##1##2##3{}
+	\let\label\@gobble
+	\let\index\@gobble
 }
