@@ -67,7 +67,7 @@
 \ifhandout@sectioning%Only if needed by option
 	
 	\apptocmd{\@sect}{% 
-		\immediate\write\@handout{\string\csuse{#1}{\noexpand#8}}%
+		\immediate\write\@handout{\string\csuse{#1}{\unexpanded{#8}}}%
 		}{}{\handout@warning{Can't patch sectioning commands}}
 
 \fi
