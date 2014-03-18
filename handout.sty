@@ -17,7 +17,9 @@
 \RequirePackage{kvoptions,etoolbox}
 
 % Options
+\DeclareBoolOption[false]{disabled}
 \DeclareBoolOption[false]{sectioning}
+
 \ProcessKeyvalOptions*
 
 % Warning tools
@@ -30,8 +32,10 @@
 
 % The main command
 \newcommand{\handout}[1]{%	
-	\input{#1}% Add the handout
-	\immediate\write\@handout {\string\input{#1}}
+	\ifhandout@disabled\else%
+		\input{#1}% Add the handout
+		\immediate\write\@handout {\string\input{#1}}
+	\fi
 }
 
 % Output the sectionning commands in the .handout file
@@ -43,14 +47,16 @@
 		}{}{\handout@warning{Can't patch sectioning commands}}
 
 \fi
-% Call the handout file at the end
+% Call the handout file at the end, if need
+\ifhandout@disabled\else
 
-\AtEndDocument{%
-	\immediate\closeout\@handout%
-	\before@handout%
-	\ifdef{\beforehandout}{\beforehandout}{\handout@warning{No command defined to be run before handout}}
-	\input\jobname.handout%
-}
+	\AtEndDocument{%
+		\immediate\closeout\@handout%
+		\before@handout%
+		\ifdef{\beforehandout}{\beforehandout}{\handout@warning{No command defined to be run before handout}}
+		\input\jobname.handout%
+	}
+\fi
 
 % Standard command before handout
 \newcommand{\before@handout}{%
