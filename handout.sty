@@ -48,6 +48,9 @@
 
 \newcommand{\nothandout}[1]{#1}
 \newcommand{\onlyhandout}[1]{}
+\newcommand{\forhandout}[1]{%
+	\immediate\write\@handout{\noexpand #1}%
+}
 
 % The command written in the .handout file
 \newcommand{\handout@input}[1]{%
