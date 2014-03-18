@@ -40,9 +40,9 @@
 			\stepcounter{handoutnumber}%
 			\handoutnumberintxt{\thehandoutnumber}%
 		\fi%
-		\input{\handout@dir/#1}% Add the handout
 		\immediate\write\@handout {\string\csuse{handout@input}{#1}}%
 	\fi%
+	\input{\handout@dir/#1}% Add the handout
 }
 
 
