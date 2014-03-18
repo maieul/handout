@@ -1,0 +1,20 @@
+\ProvidesPackage{handout}[2014/03/18 1.0.0 Handout package]
+\RequirePackage{etoolbox}
+
+% Opening the handout file
+\newwrite\@handout
+\immediate\openout\@handout=\jobname.handout
+
+
+% The main command
+\newcommand{\handout}[1]{%	
+	\input{#1}% Add the handout
+	\immediate\write\@handout {\string\input{#1}}
+}
+
+% Call the handout file at the end
+
+\AtEndDocument{%
+	\immediate\closeout\@handout%
+	\input\jobname.handout%
+}
