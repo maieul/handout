@@ -14,7 +14,11 @@
 % This work consists of the files handout.sty and example and documentation files.
 
 \ProvidesPackage{handout}[2014/03/18 1.0.0 Handout package]
-\RequirePackage{etoolbox}
+\RequirePackage{kvoptions,etoolbox}
+
+% Options
+\DeclareBoolOption[false]{sectioning}
+\ProcessKeyvalOptions*
 
 % Warning tools
 \newcommand{\handout@warning}[1]{\@latex@warning{Handout: #1}}
@@ -30,6 +34,15 @@
 	\immediate\write\@handout {\string\input{#1}}
 }
 
+% Output the sectionning commands in the .handout file
+
+\ifhandout@sectioning%Only if needed by option
+	
+	\pretocmd{\@sect}{% 
+		\immediate\write\@handout{\string\csuse{#1}{#8}}%
+		}{}{\handout@warning{Can't patch sectioning commands}}
+
+\fi
 % Call the handout file at the end
 
 \AtEndDocument{%
@@ -44,4 +57,9 @@
 	\newpage%
 	\setcounter{page}{1}%
 	\setcounter{footnote}{0}%
+	\ifhandout@sectioning%
+		\setcounter{section}{0}%
+		\setcounter{subsection}{0}%
+		\setcounter{subsubsection}{0}%
+	\fi
 }
