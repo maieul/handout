@@ -16,5 +16,13 @@
 
 \AtEndDocument{%
 	\immediate\closeout\@handout%
+	\before@handout%
 	\input\jobname.handout%
+}
+
+% Standard command before handout
+\newcommand{\before@handout}{%
+	\newpage%
+	\setcounter{page}{1}%
+	\setcounter{footnote}{0}%
 }
