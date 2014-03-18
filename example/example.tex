@@ -3,6 +3,9 @@
 \usepackage{polyglossia,fontspec}
 \setmainlanguage{french}
 
+
+
+
 \usepackage[numbering,sectioning]{handout}
 % Customize the begining of an handout
 \newcommand{\beforehandout}{%
@@ -18,12 +21,29 @@
 	\fbox{\arabic{handoutnumber}}%
 }
 
+% Biblatex, in combinaison with handout
+
+\usepackage[style=verbose-trad2]{biblatex}
+\bibliography{example.bib}
+
+\newcommand{\citehandout}{%
+	\AtNextCitekey{%
+		\forhandout{%
+			\noindent%
+			\cite[\thefield{postnote}]{\thefield{entrykey}}%
+			}%
+		\forhandout{%
+			\vspace{\baselineskip}%
+		}
+	}
+}
+
 \begin{document}
 
 \tableofcontents
 \section{Gabriel du Preau}
 
-En 1583 Gabriel du Preau publie etc…\forhandout{\textbf{Un écrivain catholique}.}
+En 1583 Gabriel du Preau publie etc\citehandout\footcite[33]{Preau1583_1}…
 \handout{texts/Preau1583_1_33}
 
 \end{document}
