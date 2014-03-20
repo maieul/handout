@@ -71,7 +71,23 @@ You have just to split your pdf in two parts to obtain your handout for auditors
 
 See example~1.
 
+\section{Code to be run at the beginning of the handout}
 
+You can execute any code at the beginning of the handout by defining a command \cmd{beforehandout}. For example, to suppress extra margins of the \env{quotation} environment:
+\begin{minted}{tex}
+\newcommand{\beforehandout}{%
+	\renewenvironment{quotation}{}{}
+}
+\end{minted}
+
+See example~2.
+
+Note that the package always do some action before the handout:
+\begin{itemize}
+	\item Start a new page.
+	\item Reset page and footnote.
+	\item Disable \cmd{index} and \cmd{label} command.
+\end{itemize}
 \section{Putting all the examples' file in a same folder}
 
 In most cases, your file will be put in the same folder. So you can fix this folder with the package's option \opt{dir}:
