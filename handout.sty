@@ -38,14 +38,11 @@
 	\ifhandout@disabled\else%Only if not disabled, of course!
 		\ifhandout@numbering%
 			\stepcounter{handoutnumber}%
-			\begin{samepage}\handoutnumberintxt{\thehandoutnumber}%
+			\handoutnumberintxt{\thehandoutnumber}%
 		\fi%
 		\immediate\write\@handout {\string\csuse{handout@input}{#1}}%
 	\fi%
 	\input{\handout@dir/#1}% Add the handout
-	\ifhandout@numbering
-	\end{samepage}
-	\fi
 }
 
 
@@ -61,13 +58,9 @@
 \newcommand{\handout@input}[1]{%
 	\ifhandout@numbering%
 		\stepcounter{handoutnumber}%
-		\begin{samepage}%
 		\handoutnumber{\thehandoutnumber}%
 	\fi%
 	\input{\handout@dir/#1}%
-	\ifhandout@numbering%
-	\end{samepage}%
-	\fi
 }
 % Output the sectionning commands in the .handout file
 
