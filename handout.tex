@@ -129,6 +129,41 @@ See \LaTeX\ documentation on counter's appearance.
 \section{Temporarily disable the handout generation}
 
 The package's option \opt{disabled} allows to disable the handout generation. 
+
+\section{Advanced use}
+\subsection{Conditional code}
+
+The argument of a  \cmd{onlyhandout} command will be printed only in the handout. Conversely, the argument of a command \cmd{nothandout} will printed only in the main text. See example~6.
+
+\subsection{Insert code in the handout}
+
+The argument of the  \cmd{forhandout} command will be add in the handout, even if called outside a included file. 
+
+\emph{Be careful} : if the content of the argument start by a command, this command won't be run before the handout. 
+
+The \cmd{forhandout} command is quite complexe to manage, but can be useful if you want to insert automatically bibliographic reference in your handout. If you use \emph{biblatex} to manage bibliography, you can define a \cmd{citehandout} command  this code  :
+
+\begin{minted}{tex}
+\newcommand{\citehandout}{%
+	\AtNextCitekey{%
+		\forhandout{%
+			\beforehandoutref%
+		}%
+		\forhandout{%
+			\cite[\strfield{postnote}]{\strfield{entrykey}}%
+			}%
+        		\forhandout{%
+			\afterhandoutref%
+		}%
+	}%
+}
+\newcommand{\beforehandoutref}{\par\noindent\hspace{-2\parindent}}
+\newcommand{\afterhandoutref}{\par\vskip0.25\baselineskip}
+\end{minted}
+
+You can call \cmd{citehandout} command before citation commands that you want reference be copied in the handout. See example~7 and the \emph{biblatex} handbook.
+
+
 \section{Change history}
 
 \begin{changelog}
