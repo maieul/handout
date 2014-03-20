@@ -1,7 +1,10 @@
 *(busy)
 *.bcf
 *.run.xml
+*.pyg
+*.fls
 *.handout
+handout
 *.pdf
 *.acn
 *.acr
