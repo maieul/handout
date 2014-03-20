@@ -12,13 +12,13 @@
 \usepackage{bidi}
 % Meta-datas
 \titlepage{%
-	title={Handout fabrication},
-	subtitle={New data types},
-	email={maieul <at> maieul <dot> net},
-	author={Maïeul Rouquette},
-	revision={1.0.0},
-	date={20/03/2014},
-	url={https://github.com/maieul/handout}}
+  title={Handout's making},
+  subtitle={New data types},
+  email={maieul <at> maieul <dot> net},
+  author={Maïeul Rouquette},
+  revision={1.0.0},
+  date={20/03/2014},
+  url={https://github.com/maieul/handout}}
 
 
 \begin{document}
@@ -29,7 +29,7 @@
 \section{Introduction}
 \subsection{Goals}
 
-In some scholar fields, a beamer is not a good support when speeching in a proceeding. For example in classical philology, as the main sources are text, it will be better to distribute to the auditors an handout with extracts of the texts about which we will speech.
+In some scholar fields a beamer is not a good support when speeching in a proceeding. For example in classical philology, as the main sources are text, it will be better to distribute to the auditors an handout with extracts of the texts about which we will speech.
 
 The goal of this package is to help to prepare such handout when writting the talk.
 
@@ -41,9 +41,9 @@ All issues can be submitted, in French or English, in the GitHub issues page\foo
 
 \subsection{French tutorial}
 
-As the idea of the package behavior was send by French \LaTeX\ users\footnote{\url{http://fr.comp.text.tex.narkive.com/pXMop2kE/fabrication-d-un-exemplier}.}, and as the package's author has French native language, a French tutorial is available in \url{http://geekographie.maieul.net/136}. 
+As the idea of the package behavior was send by French \LaTeX\ users\footnote{\url{http://fr.comp.text.tex.narkive.com/pXMop2kE/fabrication-d-un-exemplier}.}, and as the package's author has French as native language, a French tutorial is available in \url{http://geekographie.maieul.net/136}. 
 
-All files in the examples' folder are in French, but that should not have consequence for the meaning of their behaviors. We  have to be run with \XeLaTeX.
+All files in the examples' folder are in French, but that should not have consequence for the meaning of their behaviors. They  have to be run with \XeLaTeX.
 
 
 \section{Basis}
@@ -63,12 +63,11 @@ Your text
 
 The PDF output will contain two parts:
 \begin{enumerate}
-	\item Your paper.
-	\item The handout.
+  \item Your paper.
+  \item The handout.
 \end{enumerate}
 
 You have just to split your pdf in two parts to obtain your handout for auditors.
-
 See example~1.
 
 \section{Code to be run at the beginning of the handout}
@@ -76,17 +75,16 @@ See example~1.
 You can execute any code at the beginning of the handout by defining a command \cmd{beforehandout}. For example, to suppress extra margins of the \env{quotation} environment:
 \begin{minted}{tex}
 \newcommand{\beforehandout}{%
-	\renewenvironment{quotation}{}{}
+  \renewenvironment{quotation}{}{}
 }
 \end{minted}
-
 See example~2.
 
 Note that the package always do some action before the handout:
 \begin{itemize}
-	\item Start a new page.
-	\item Reset page and footnote.
-	\item Disable \cmd{index} and \cmd{label} command.
+  \item Start a new page.
+  \item Reset page and footnote.
+  \item Disable \cmd{index} and \cmd{label} command.
 \end{itemize}
 \section{Putting all the examples' file in a same folder}
 
@@ -110,17 +108,17 @@ If you want your handout be organized with the same sectioning commands as in yo
 The package option \opt{numbering} automatically number the example. The example's number is by default printed in margin, in a frame. See example~5. 
 
 To customize number's presentation, you can redefine three commands:
-\begin{enumerate}	
-	\item \cmd{thehandoutnumber} to redefine the way the number is displayed. Standard is:
+\begin{enumerate}  
+  \item \cmd{thehandoutnumber} to redefine the way the number is displayed. Standard is:
 \begin{minted}{tex}
 \renewcommand{\thehandoutnumber}{\fbox{\arabic{handoutnumber}}}
-\end{minted}	
+\end{minted}  
 See \LaTeX\ documentation on counter's appearance. 
-	\item \cmd{handoutnumber} to redefine the position of the number. Standard is :
+  \item \cmd{handoutnumber} to redefine the position of the number. Standard is :
 \begin{minted}{tex}
 \newcommand{\handoutnumber}[1]{\marginpar{#1}}
 \end{minted}
-	\item \cmd{handoutnumberintxt}, to redefine the position of the number in the main text. Standard is:
+  \item \cmd{handoutnumberintxt}, to redefine the position of the number in the main text. Standard is:
 \begin{minted}{tex}
 \newcommand{\handoutnumberintxt}[1]{\handoutnumber{#1}}
 \end{minted}
@@ -145,17 +143,17 @@ The \cmd{forhandout} command is quite complexe to manage, but can be useful if y
 
 \begin{minted}{tex}
 \newcommand{\citehandout}{%
-	\AtNextCitekey{%
-		\forhandout{%
-			\beforehandoutref%
-		}%
-		\forhandout{%
-			\cite[\strfield{postnote}]{\strfield{entrykey}}%
-			}%
-        		\forhandout{%
-			\afterhandoutref%
-		}%
-	}%
+  \AtNextCitekey{%
+    \forhandout{%
+      \beforehandoutref%
+    }%
+    \forhandout{%
+      \cite[\strfield{postnote}]{\strfield{entrykey}}%
+      }%
+            \forhandout{%
+      \afterhandoutref%
+    }%
+  }%
 }
 \newcommand{\beforehandoutref}{\par\noindent\hspace{-2\parindent}}
 \newcommand{\afterhandoutref}{\par\vskip0.25\baselineskip}
