@@ -105,6 +105,27 @@ See example~3.
 
 If you want your handout be organized with the same sectioning commands as in your main paper, you can use the option \opt{sectioning} when loading the package. See example~4.
 
+\section{Numbering the examples}
+
+The package option \opt{numbering} automatically number the example. The example's number is by default printed in margin, in a frame. See example~5. 
+
+To customize number's presentation, you can redefine three commands:
+\begin{enumerate}	
+	\item \cmd{thehandoutnumber} to redefine the way the number is displayed. Standard is:
+\begin{minted}{tex}
+\renewcommand{\thehandoutnumber}{\fbox{\arabic{handoutnumber}}}
+\end{minted}	
+See \LaTeX\ documentation on counter's appearance. 
+	\item \cmd{handoutnumber} to redefine the position of the number. Standard is :
+\begin{minted}{tex}
+\newcommand{\handoutnumber}[1]{\marginpar{#1}}
+\end{minted}
+	\item \cmd{handoutnumberintxt}, to redefine the position of the number in the main text. Standard is:
+\begin{minted}{tex}
+\newcommand{\handoutnumberintxt}[1]{\handoutnumber{#1}}
+\end{minted}
+\end{enumerate}
+
 \section{Temporarily disable the handout generation}
 
 The package's option \opt{disabled} allows to disable the handout generation. 
