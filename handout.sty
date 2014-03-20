@@ -101,12 +101,17 @@
 	\def\addcontentsline##1##2##3{}
 	\let\label\@gobble
 	\let\index\@gobble
-	
+	 
 	% Switches onlyhandout and nothandout commands
 	\renewcommand{\nothandout}[1]{}
 	\renewcommand{\onlyhandout}[1]{##1}
 
 }
+
+\AtBeginDocument{%
+	\@ifpackageloaded{biblatex}{%
+		\apptocmd{\before@handout}{\citereset}{}{}%
+	}{}}
 
 % Handout numbering
 
@@ -116,3 +121,5 @@
 \fi
 \newcommand{\handoutnumberintxt}[1]{\handoutnumber{#1}}
 \newcommand{\handoutnumber}[1]{\marginpar{#1}}
+
+
