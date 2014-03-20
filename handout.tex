@@ -46,7 +46,33 @@ As the idea of the package behavior was send by French \LaTeX\ users\footnote{\u
 All files in the examples' folder are in French, but that should not have consequence for the meaning of their behaviors. We  have to be run with \XeLaTeX.
 
 
+\section{Basis}
+
+The package can be loaded very quickly with the standard command \cs{usepackage}
+
+\begin{minted}{tex}
+\usepackage{handout}
+\end{minted}
+The idea of the this package is to prepare handout during the writing of the paper. When you want to add something in your handout, just write it on an external file, and call this external file with the command \cs{handout} :
+
+\begin{minted}{tex}
+Your text
+\handout{relative-path-to-example}
+Your text
+\end{minted}
+
+The PDF output will contain two parts:
+\begin{enumerate}
+	\item Your paper.
+	\item The handout.
+\end{enumerate}
+
+You have just to split your pdf in two parts to obtain your handout for auditors.
+
+See example~1.
+
 \section{Change history}
+
 
 \begin{changelog}
 
