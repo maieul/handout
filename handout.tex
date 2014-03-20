@@ -57,7 +57,7 @@ The idea of the this package is to prepare handout during the writing of the pap
 
 \begin{minted}{tex}
 Your text
-\handout{relative-path-to-example}
+\handout{folder/example}
 Your text
 \end{minted}
 
@@ -71,8 +71,21 @@ You have just to split your pdf in two parts to obtain your handout for auditors
 
 See example~1.
 
-\section{Change history}
 
+\section{Putting all the examples' file in a same folder}
+
+In most cases, your file will be put in the same folder. So you can fix this folder with the package's option \opt{dir}:
+\begin{minted}{tex}
+\usepackage[dir=folder]{handout}
+...
+Your text
+\handout{example}
+Your text
+\end{minted}{tex}
+
+See example~3.
+
+\section{Change history}
 
 \begin{changelog}
 
