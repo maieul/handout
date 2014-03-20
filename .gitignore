@@ -1,4 +1,6 @@
 *(busy)
+*.bcf
+*.run.xml
 *.handout
 *.pdf
 *.acn
