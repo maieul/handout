@@ -112,7 +112,7 @@
 
 \ifhandout@numbering
 	\newcounter{handoutnumber}
+	\renewcommand{\thehandoutnumber}{\fbox{\arabic{handoutnumber}}}
 \fi
-
 \newcommand{\handoutnumberintxt}[1]{\handoutnumber{#1}}
 \newcommand{\handoutnumber}[1]{\marginpar{#1}}
