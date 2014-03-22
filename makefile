@@ -6,7 +6,7 @@ dist: examples handout.tex README *.sty makefile latexmkrc
 	$(MAKE) -C examples all
 	
 	mkdir handout
-	cp *.tex *.pdf latexmkrc makefile README handout
+	cp *.sty *.tex *.pdf latexmkrc makefile README handout
 	
 	mkdir handout/examples
 	cp examples/*pdf examples/*tex examples/*bib examples/latexmkrc examples/makefile handout/examples
