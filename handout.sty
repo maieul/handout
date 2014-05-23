@@ -13,7 +13,7 @@
 % The Current Maintainer of this work is Maïeul Rouquette
 % This work consists of the files handout.sty and example and documentation files.
 
-\ProvidesPackage{handout}[2014/03/20 1.0.0 Handout package]
+\ProvidesPackage{handout}[2014/05/23 1.0.1 Handout package]
 \RequirePackage{kvoptions,etoolbox}
 
 % Options
@@ -100,7 +100,7 @@
 	% No new data in content or in label or index
 	\def\addcontentsline##1##2##3{}
 	\let\label\@gobble
-	\let\index\@gobble
+	\renewcommand{\index}[2][1]{}
 	 
 	% Switches onlyhandout and nothandout commands
 	\renewcommand{\nothandout}[1]{}
