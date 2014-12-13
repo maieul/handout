@@ -1,3 +1,4 @@
+*.fls
 *(busy)
 *.bcf
 *.run.xml
