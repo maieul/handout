@@ -16,8 +16,8 @@
   subtitle={to prepare your speech},
   email={maieul <at> maieul <dot> net},
   author={Maïeul Rouquette},
-  revision={1.0.0},
-  date={20/03/2014},
+  revision={1.1.0},
+  date={15/12/2014},
   url={https://github.com/maieul/handout}}
 
 
@@ -128,6 +128,8 @@ See \LaTeX\ documentation on counter's appearance.
 
 The package's option \opt{disabled} allows to disable the handout generation. 
 
+\label{enablehandout}You can also disable it for only some parts of the text: use \cmd{disablehandout} to disable handout's generation from the current point and \cmd{enablehandout} to enable it from the current point.
+
 \section{Advanced use}
 \subsection{Conditional code}
 
@@ -167,6 +169,10 @@ Note that the citation tracker is automatically reset at the beginning of the ha
 
 \begin{changelog}
 
+
+\begin{release}{1.1.0}{2014-12-15}
+\item Add \cmd{enablehandout} and \cmd{disablehandout}. \see{enablehandout}
+\end{release}
 
 \begin{release}{1.0.1}{2014-05-23}
 \item Disable indexing in handout also when using multiple index.

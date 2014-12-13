@@ -13,11 +13,14 @@
 % The Current Maintainer of this work is Maïeul Rouquette
 % This work consists of the files handout.sty and example and documentation files.
 
-\ProvidesPackage{handout}[2014/05/23 1.0.1 Handout package]
+\ProvidesPackage{handout}[2014/12/15 1.1.0 Handout package]
 \RequirePackage{kvoptions,etoolbox}
 
 % Options
 \DeclareBoolOption[false]{disabled}
+\let\disablehandout\handout@disabledtrue
+\let\enablehandout\handout@disabledfalse
+
 \DeclareBoolOption[false]{numbering}
 \DeclareBoolOption[false]{sectioning}
 
@@ -76,15 +79,15 @@
 
 \fi
 % Call the handout file at the end, if need
-\ifhandout@disabled\else
 
-	\AtEndDocument{%
-		\immediate\closeout\@handout%
-		\before@handout%
-		\ifdef{\beforehandout}{\beforehandout}{\handout@warning{No command defined to be run before handout}}
-		\input\jobname.handout%
-	}
-\fi
+\AtEndDocument{%
+    \ifhandout@disabled\else
+	  \immediate\closeout\@handout%
+	  \before@handout%
+	  \ifdef{\beforehandout}{\beforehandout}{\handout@warning{No command defined to be run before handout}}
+	  \input\jobname.handout%
+    \fi
+}
 
 % Standard command before handout
 \newcommand{\before@handout}{%
