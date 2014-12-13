@@ -51,7 +51,9 @@
 \newcommand{\nothandout}[1]{#1}
 \newcommand{\onlyhandout}[1]{}
 \newcommand{\forhandout}[1]{%
-	\immediate\write\@handout{\noexpand #1}%
+	\ifhandout@disabled\else%
+	  \immediate\write\@handout{\noexpand #1}%
+	\fi%
 }
 
 % The command written in the .handout file
@@ -67,7 +69,9 @@
 \ifhandout@sectioning%Only if needed by option
 	
 	\apptocmd{\@sect}{% 
-		\immediate\write\@handout{\string\csuse{#1}{\unexpanded{#8}}}%
+		\ifhandout@disabled\else%
+		  \immediate\write\@handout{\string\csuse{#1}{\unexpanded{#8}}}%
+		\fi%
 		}{}{\handout@warning{Can't patch sectioning commands}}
 
 \fi
