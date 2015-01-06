@@ -16,8 +16,8 @@
   subtitle={to prepare your speech},
   email={maieul <at> maieul <dot> net},
   author={Maïeul Rouquette},
-  revision={1.1.0},
-  date={15/12/2014},
+  revision={1.2.0},
+  date={06/01/2015},
   url={https://github.com/maieul/handout}}
 
 
@@ -130,6 +130,8 @@ The package's option \opt{disabled} allows to disable the handout generation.
 
 \label{enablehandout}You can also disable it for only some parts of the text: use \cmd{disablehandout} to disable handout's generation from the current point and \cmd{enablehandout} to enable it from the current point.
 
+\label{printing} You can also use \opt{printing=false}, which makes \LaTeX\ not printing the handout BUT numbering the examples.
+
 \section{Advanced use}
 \subsection{Conditional code}
 
@@ -169,6 +171,10 @@ Note that the citation tracker is automatically reset at the beginning of the ha
 
 \begin{changelog}
 
+\begin{release}{1.2.0}{2015-01-06}
+\item Add new option printing. \see{printing}
+\item Optimize performances. 
+\end{release}
 
 \begin{release}{1.1.0}{2014-12-15}
 \item Add \cmd{enablehandout} and \cmd{disablehandout}. \see{enablehandout}

@@ -24,6 +24,8 @@
 \DeclareBoolOption[false]{numbering}
 \DeclareBoolOption[false]{sectioning}
 
+\DeclareBoolOption[true]{printing}
+
 \DeclareStringOption[.]{dir}
 
 \ProcessKeyvalOptions*
@@ -43,7 +45,9 @@
 			\stepcounter{handoutnumber}%
 			\handoutnumberintxt{\thehandoutnumber}%
 		\fi%
-		\immediate\write\@handout {\string\handout@input{#1}}%
+		\ifhandout@printing%
+		  \immediate\write\@handout {\string\handout@input{#1}}%
+		\fi%
 	\fi%
 	\input{\handout@dir/#1}% Add the handout
 }
@@ -55,7 +59,9 @@
 \newcommand{\onlyhandout}[1]{}
 \newcommand{\forhandout}[1]{%
 	\ifhandout@disabled\else%
-	  \immediate\write\@handout{\noexpand #1}%
+	  \ifhandout@printing%
+	    \immediate\write\@handout{\noexpand #1}%
+	  \fi%
 	\fi%
 }
 
@@ -73,7 +79,9 @@
 	
 	\apptocmd{\@sect}{% 
 		\ifhandout@disabled\else%
-		  \immediate\write\@handout{\string\csuse{#1}{\unexpanded{#8}}}%
+		  \ifhandout@printing%
+		    \immediate\write\@handout{\string\csuse{#1}{\unexpanded{#8}}}%
+		  \fi%
 		\fi%
 		}{}{\handout@warning{Can't patch sectioning commands}}
 
@@ -81,14 +89,16 @@
 % Call the handout file at the end, if need
 
 \AtEndDocument{%
-    \ifhandout@disabled\else
-	  \immediate\closeout\@handout%
-	  \before@handout%
-	  \ifdef{\beforehandout}{\beforehandout}{\handout@warning{No command defined to be run before handout}}
-	  \makeatletter%
-	  \input\jobname.handout%
-	  \makeatother%
-    \fi
+    \ifhandout@printing%
+	    \ifhandout@disabled\else
+		  \immediate\closeout\@handout%
+		  \before@handout%
+		  \ifdef{\beforehandout}{\beforehandout}{\handout@warning{No command defined to be run before handout}}
+		  \makeatletter%
+		  \input\jobname.handout%
+		  \makeatother%
+	    \fi%
+    \fi%
 }
 
 % Standard command before handout
