@@ -13,7 +13,7 @@
 % The Current Maintainer of this work is Maïeul Rouquette
 % This work consists of the files handout.sty and example and documentation files.
 
-\ProvidesPackage{handout}[2014/12/15 1.1.0 Handout package]
+\ProvidesPackage{handout}[2015/01/06 1.2.0 Handout package]
 \RequirePackage{kvoptions,etoolbox}
 
 % Options
@@ -43,7 +43,7 @@
 			\stepcounter{handoutnumber}%
 			\handoutnumberintxt{\thehandoutnumber}%
 		\fi%
-		\immediate\write\@handout {\string\csuse{handout@input}{#1}}%
+		\immediate\write\@handout {\string\handout@input{#1}}%
 	\fi%
 	\input{\handout@dir/#1}% Add the handout
 }
@@ -85,7 +85,9 @@
 	  \immediate\closeout\@handout%
 	  \before@handout%
 	  \ifdef{\beforehandout}{\beforehandout}{\handout@warning{No command defined to be run before handout}}
+	  \makeatletter%
 	  \input\jobname.handout%
+	  \makeatother%
     \fi
 }
 
