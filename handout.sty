@@ -13,7 +13,7 @@
 % The Current Maintainer of this work is Maïeul Rouquette
 % This work consists of the files handout.sty and example and documentation files.
 
-\ProvidesPackage{handout}[2015/01/06 1.2.0 Handout package]
+\ProvidesPackage{handout}[2015/04/14 1.2.1 Handout package]
 \RequirePackage{kvoptions,etoolbox}
 
 % Options
@@ -80,7 +80,7 @@
 	\apptocmd{\@sect}{% 
 		\ifhandout@disabled\else%
 		  \ifhandout@printing%
-		    \immediate\write\@handout{\string\csuse{#1}{\unexpanded{#8}}}%
+		    \immediate\write\@handout{\@backslashchar#1{\unexpanded{#8}}}%
 		  \fi%
 		\fi%
 		}{}{\handout@warning{Can't patch sectioning commands}}
