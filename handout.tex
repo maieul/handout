@@ -16,8 +16,8 @@
   subtitle={to support your talk},
   email={maieul <at> maieul <dot> net},
   author={Maïeul Rouquette},
-  revision={1.2.1a},
-  date={16/04/2015},
+  revision={1.3.0},
+  date={13/10/2016},
   url={https://github.com/maieul/handout}}
 
 
@@ -69,7 +69,7 @@ The PDF output will contain two parts:
 You have just to split your pdf in two parts to obtain your handout for your audience.
 See example~1.
 
-\section{Code to be run at the beginning of the handout}
+\section{Code to be run at the beginning / at the end of the handout}
 
 You can execute any code at the beginning of the handout by defining a command \cmd{beforehandout}. For example, to suppress the extra margins of the \env{quotation} environment:
 \begin{minted}{tex}
@@ -86,6 +86,13 @@ Note that some actions are always performed before the handout:
   \item Disable \cmd{index} and \cmd{label} command.
 \end{itemize}
 
+You can also execute any code at the end of the handout by defining a command \cmd{afterhandout}.
+ For example, if you want to add additional remarks on your handout, but not in your main text.
+\begin{minted}{tex}
+\newcommand{\afterhandout}{%
+  Additional remarks.
+}
+\end{minted}
 \section{Putting all your examples in a single folder}
 
 In most cases, all your external files will be in a single folder. So you can fix this folder with the package's option \opt{dir}:
@@ -172,6 +179,10 @@ Note that the citation tracker is automatically reset at the beginning of the ha
 \section{Change history}
 
 \begin{changelog}
+
+\begin{release}{1.3.0}{2016-10-04}
+\item Add possibility to add additional content at the end of the handout. 
+\end{release}
 
 \begin{release}{1.2.1}{2015-01-06}
 \item Optimize performance with \opt{sectioning} option.
