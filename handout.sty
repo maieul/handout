@@ -13,7 +13,7 @@
 % The Current Maintainer of this work is Maïeul Rouquette
 % This work consists of the files handout.sty and example and documentation files.
 
-\ProvidesPackage{handout}[2016/10/13 1.3.0 Handout package]
+\ProvidesPackage{handout}[2016/10/24 1.4.0 Handout package]
 \RequirePackage{kvoptions,etoolbox}
 
 % Options
@@ -46,7 +46,7 @@
 			\handoutnumberintxt{\thehandoutnumber}%
 		\fi%
 		\ifhandout@printing%
-		  \immediate\write\@handout {\string\handout@input{#1}}%
+		    \immediate\write\@handout {\string\handout@input{#1}}%
 		\fi%
 	\fi%
 	\input{\handout@dir/#1}% Add the handout
@@ -67,6 +67,9 @@
 
 % The command written in the .handout file
 \newcommand{\handout@input}[1]{%
+	\ifdefined\AtEveryHandout%
+	  \AtEveryHandout%
+	\fi%
 	\ifhandout@numbering%
 		\stepcounter{handoutnumber}%
 		\handoutnumber{\thehandoutnumber}%
