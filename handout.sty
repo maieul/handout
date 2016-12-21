@@ -13,7 +13,7 @@
 % The Current Maintainer of this work is Maïeul Rouquette
 % This work consists of the files handout.sty and example and documentation files.
 
-\ProvidesPackage{handout}[2016/12/21 1.5.1 Handout package]
+\ProvidesPackage{handout}[2016/11/15 1.5.0 Handout package]
 \RequirePackage{kvoptions,etoolbox}
 
 % Options
@@ -60,7 +60,7 @@
 \newcommand{\forhandout}[1]{%
 	\ifhandout@disabled\else%
 	  \ifhandout@printing%
-	    \immediate\write\@handout{\unexpanded{#1}}%
+	    \immediate\write\@handout{\noexpand #1}%
 	  \fi%
 	\fi%
 }
